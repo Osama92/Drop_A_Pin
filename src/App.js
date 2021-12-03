@@ -20,6 +20,7 @@ class SimpleMap extends Component {
           bootstrapURLKeys={{ key: "AIzaSyAsDbgavhwI18qO3lwKZlCyI1AnJlVSUaE" }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
+          yesIWantToUseGoogleMapApiInternals={true}
         >
           <AnyReactComponent lat={6.457171} lng={3.327709} text="My Location" />
         </GoogleMapReact>

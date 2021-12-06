@@ -29,6 +29,7 @@ class App extends React.Component {
       latitude: position.coords.latitude,
       longitude: position.coords.longitude
     });
+    this.reverseGeoCoordinates();
   };
 
   reverseGeoCoordinates = () => {
@@ -36,7 +37,9 @@ class App extends React.Component {
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&key=AIzaSyAsDbgavhwI18qO3lwKZlCyI1AnJlVSUaE`
     )
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) =>
+        this.setState({ userAddress: data.results[0].formatted_address })
+      )
       .catch((error) => alert(error));
   };
 

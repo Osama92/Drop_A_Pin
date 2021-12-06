@@ -9,6 +9,19 @@ class App extends React.Component {
       longitude: null,
       userAddress: null
     };
+    // this.getLocation = this.getLocation.bind(this);
+  }
+
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.getCoordinates);
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  }
+
+  getCoordinates(position) {
+    console.log(position);
   }
   render() {
     return (

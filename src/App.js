@@ -1,32 +1,25 @@
-import React, { Component } from "react";
-import GoogleMapReact from "google-map-react";
+import React from "react";
+import "./styles.css";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
-class SimpleMap extends Component {
-  static defaultProps = {
-    center: {
-      lat: 6.457171,
-      lng: 3.327709
-    },
-    zoom: 15
-  };
-
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      latitude: null,
+      longitude: null,
+      userAddress: null
+    };
+  }
   render() {
     return (
-      // Important! Always set the container height explicitly
-      <div style={{ height: "100vh", width: "100%" }}>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyAsDbgavhwI18qO3lwKZlCyI1AnJlVSUaE" }}
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}
-          yesIWantToUseGoogleMapApiInternals={true}
-        >
-          <AnyReactComponent lat={6.457171} lng={3.327709} text="Lat_Long" />
-        </GoogleMapReact>
+      <div className="App">
+        <h1>Get User Coordinates</h1>
+        <button onclick={this.getLocation}>Get my Location</button>
+        <p>Lat: {this.state.latitude}</p>
+        <p>Long: {this.state.longitude}</p>
+        <p>Address: {this.state.userAddress}</p>
       </div>
     );
   }
 }
-
-export default SimpleMap;
+export default App;

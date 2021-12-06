@@ -9,25 +9,53 @@ class App extends React.Component {
       longitude: null,
       userAddress: null
     };
-    // this.getLocation = this.getLocation.bind(this);
+    //this.getLocation = this.getLocation.bind(this);
   }
 
-  getLocation() {
+  getLocation = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.getCoordinates);
+      navigator.geolocation.getCurrentPosition(
+        this.getCoordinates,
+        this.LocationError
+      );
     } else {
       alert("Geolocation is not supported by this browser.");
     }
-  }
+  };
 
-  getCoordinates(position) {
-    console.log(position);
-  }
+  getCoordinates = (position) => {
+    // alert(position.coords.longitude);
+    this.setState({
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude
+    });
+  };
+
+  reverseGeoCoordinates = () => {};
+
+  LocationError = (error) => {
+    switch (error.code) {
+      case error.PERMISSION_DENIED:
+        alert("User denied the request for Geolocation.");
+        break;
+      case error.POSITION_UNAVAILABLE:
+        alert("Location information is unavailable.");
+        break;
+      case error.TIMEOUT:
+        alert("The request to get user location timed out.");
+        break;
+      case error.UNKNOWN_ERROR:
+        alert("An unknown error occurred.");
+        break;
+      default:
+        alert("An unknown error occurred.");
+    }
+  };
   render() {
     return (
       <div className="App">
         <h1>Get User Coordinates</h1>
-        <button onclick={this.getLocation}>Get my Location</button>
+        <button onClick={this.getLocation}>Get my Location</button>
         <p>Lat: {this.state.latitude}</p>
         <p>Long: {this.state.longitude}</p>
         <p>Address: {this.state.userAddress}</p>

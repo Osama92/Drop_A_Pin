@@ -31,7 +31,14 @@ class App extends React.Component {
     });
   };
 
-  reverseGeoCoordinates = () => {};
+  reverseGeoCoordinates = () => {
+    fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${this.state.latitude},${this.state.longitude}&key=AIzaSyAsDbgavhwI18qO3lwKZlCyI1AnJlVSUaE`
+    )
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => alert(error));
+  };
 
   LocationError = (error) => {
     switch (error.code) {

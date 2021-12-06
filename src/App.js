@@ -9,7 +9,6 @@ class App extends React.Component {
       longitude: null,
       userAddress: null
     };
-    //this.getLocation = this.getLocation.bind(this);
   }
 
   getLocation = () => {
@@ -24,7 +23,6 @@ class App extends React.Component {
   };
 
   getCoordinates = (position) => {
-    // alert(position.coords.longitude);
     this.setState({
       latitude: position.coords.latitude,
       longitude: position.coords.longitude

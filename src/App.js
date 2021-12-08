@@ -66,7 +66,7 @@ class App extends React.Component {
         <button onClick={this.getLocation}>Get my Location</button>
         <p>Latitude: {this.state.latitude}</p>
         <p>Longitude: {this.state.longitude}</p>
-        <p>Address: {this.state.userAddress}</p>
+        <p>GeoCoded Address: {this.state.userAddress}</p>
       </div>
     );
   }
